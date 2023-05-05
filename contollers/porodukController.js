@@ -5,7 +5,6 @@ module.exports = {
     res.status(200).json({
       status: "Success",
       message: "Backend is running",
-      data: data,
     });
   },
 
