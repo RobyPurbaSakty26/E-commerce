@@ -1,7 +1,7 @@
 const produkService = require("../service/produkService");
 
 module.exports = {
-  async handleRoot(req, res) {
+  handleRoot(req, res) {
     res.status(200).json({
       status: "Success",
       message: "Backend is running",
