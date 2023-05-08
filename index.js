@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const produk = require("./contollers");
+const contollers = require("./contollers");
 
 app.use(express.json());
 
@@ -11,7 +11,9 @@ app.get("/", (req, res) => {
     message: "Backend is running",
   });
 });
-app.get("/produk", produk.produk.handlerGetProduk);
+app.get("/produk", contollers.produk.handlerGetProduk);
+app.post("/produk", contollers.produk.handleCreateProduk);
+app.delete("/produk/:id", contollers.produk.handleDeleteProduct);
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);

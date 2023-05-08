@@ -16,7 +16,7 @@ module.exports = {
     await queryInterface.bulkInsert("produks", [
       {
         nama_produk: "Makanan Kucing",
-        variat: "Magenta",
+        variant: "Magenta",
         deskripsi: "Makanan hanya untuk kucing",
         harga: 2000000,
         createdAt: new Date(),
