@@ -62,4 +62,43 @@ module.exports = {
       });
     }
   },
+
+  async handleUpdateProduk(req, res) {
+    try {
+      const id = req.params.id;
+      const body = req.body;
+      const produk = await produkService.update(id, body);
+      res.status(200).json({
+        status: "Ok",
+        data: produk,
+      });
+    } catch (err) {
+      res.status(400).json({
+        status: "Fail",
+        message: err.message,
+      });
+    }
+  },
+
+  async handleGetByIdProduk(req, res) {
+    try {
+      const id = req.params.id;
+      const produk = await produkService.getByPk(id);
+      if (!produk) {
+        return res.status(404).json({
+          status: "Fail",
+          message: "Id not found",
+        });
+      }
+      res.status(200).json({
+        status: "Ok",
+        data: produk,
+      });
+    } catch (err) {
+      res.status(400).json({
+        status: "Fail",
+        message: err.message,
+      });
+    }
+  },
 };

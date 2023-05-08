@@ -29,4 +29,20 @@ module.exports = {
       throw err;
     }
   },
+
+  async update(id, body) {
+    try {
+      return await produk.update(body, { where: { id } });
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  async getByPk(id) {
+    try {
+      return produk.findByPk(id);
+    } catch (err) {
+      throw err;
+    }
+  },
 };
