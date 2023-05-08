@@ -5,7 +5,7 @@
   "author": "RobyPurbaSakty26 <obykao26@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npm index.js",
+    "start": "node index.js",
     "dev": "npx nodemon index.js",
     "drop": "sequelize db:drop",
     "make": "sequelize db:create",
