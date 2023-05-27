@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       idUser: DataTypes.INTEGER,
       total: DataTypes.INTEGER,
       date: DataTypes.DATE,
-      status: DataTypes.ENUM,
+      status: DataTypes.ENUM("Process", "Failed", "Success"),
     },
     {
       sequelize,
