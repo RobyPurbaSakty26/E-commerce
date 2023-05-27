@@ -1,13 +1,14 @@
 const { produk } = require("../models");
+const productRepository = require("../repository/productRepository");
 
 module.exports = {
   async getAll() {
     try {
-      const data = await produk.findAll();
-      const count = await produk.count();
+      const data = await productRepository.getAll();
+      const count = await productRepository.count();
       return {
-        data,
-        count,
+        data: data,
+        count: count,
       };
     } catch (err) {
       throw err;
@@ -15,7 +16,8 @@ module.exports = {
   },
   async create(body) {
     try {
-      const data = await produk.create(body);
+      console.log(body);
+      const data = await productRepository.create(body);
       return data;
     } catch (err) {
       throw err;
@@ -23,7 +25,7 @@ module.exports = {
   },
   async delete(id) {
     try {
-      const isdelete = await produk.destroy({ where: { id } });
+      const isdelete = await productRepository.delete(id);
       return isdelete;
     } catch (err) {
       throw err;
@@ -32,7 +34,7 @@ module.exports = {
 
   async update(id, body) {
     try {
-      return await produk.update(body, { where: { id } });
+      return await productRepository.update(id, body);
     } catch (err) {
       throw err;
     }
@@ -40,7 +42,7 @@ module.exports = {
 
   async getByPk(id) {
     try {
-      return produk.findByPk(id);
+      return productRepository.getByPk(id);
     } catch (err) {
       throw err;
     }

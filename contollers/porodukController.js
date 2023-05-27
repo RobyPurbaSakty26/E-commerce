@@ -13,8 +13,8 @@ module.exports = {
       const { data, count } = await produkService.getAll();
       res.status(200).json({
         status: "Success",
-        data: data,
-        count: count,
+        data,
+        count,
       });
     } catch (err) {
       res.status(400).json({
@@ -27,8 +27,9 @@ module.exports = {
   async handleCreateProduk(req, res) {
     try {
       const body = req.body;
-      console.log(body);
+
       const data = await produkService.create(body);
+      // console.log(data);
       res.status(200).json({
         status: "Created",
         data: data,
@@ -66,6 +67,12 @@ module.exports = {
   async handleUpdateProduk(req, res) {
     try {
       const id = req.params.id;
+      if (!id) {
+        return res.status(400).json({
+          status: "Fail",
+          message: "Please Insert Id",
+        });
+      }
       const body = req.body;
       const produk = await produkService.update(id, body);
       res.status(200).json({
@@ -83,6 +90,12 @@ module.exports = {
   async handleGetByIdProduk(req, res) {
     try {
       const id = req.params.id;
+      if (!id) {
+        return res.status(400).json({
+          status: "Fail",
+          Message: "Please Insert Id",
+        });
+      }
       const produk = await produkService.getByPk(id);
       if (!produk) {
         return res.status(404).json({
