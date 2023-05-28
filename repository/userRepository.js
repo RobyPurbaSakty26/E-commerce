@@ -21,6 +21,10 @@ module.exports = {
     return User.count();
   },
 
+  findUser(condition) {
+    return User.findOne({ where: condition });
+  },
+
   delete(id) {
     return User.destroy({ where: { id } });
   },
