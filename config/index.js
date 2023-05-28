@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
-const contollers = require("../contollers");
+const contollers = require("../controllers");
 
 app.use(express.json());
 
@@ -19,6 +19,11 @@ app.post("/products", contollers.produk.handleCreateProduk);
 app.delete("/products/:id", contollers.produk.handleDeleteProduct);
 app.put("/products/:id", contollers.produk.handleUpdateProduk);
 app.get("/products/:id", contollers.produk.handleGetByIdProduk);
+
+// authUsers
+app.post("/registers", contollers.authUser.handlerCreateUser);
+app.post("/login", contollers.authUser.handleLogin);
+app.get("/users", contollers.authUser.handleGetAllUsers);
 
 app.use((req, res, next) => {
   res.status(404).json({ error: "Router Not Found" });

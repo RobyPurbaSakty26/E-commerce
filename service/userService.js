@@ -10,13 +10,14 @@ async function encryptPassword(str) {
     const hash = await bcrypt.hash(str, 10);
     return hash;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 }
 
 async function comparePassword(password, encryptedPassword) {
   try {
     const isValid = await bcrypt.compare(password, encryptedPassword);
+    console.log(password.encryptedPassword);
     return isValid;
   } catch (err) {
     console.log(err);
@@ -49,21 +50,21 @@ module.exports = {
   createWebToken,
   verifyEmail,
 
-  async register(Name, Email, Password, Role) {
+  async register(name, email, password) {
     try {
-      const user = await userRepository.findByPk({ Email });
+      const user = await userRepository.findUser({ email });
 
       if (user) {
         const err = new Error("Email has use");
-        return err;
+        throw err;
       }
 
-      const encryptedPasswod = await encryptPassword(Password);
+      const encryptedPasswod = await encryptPassword(password);
 
       const body = {
-        Name,
-        Email,
-        Password: encryptedPasswod,
+        name: name,
+        email: email,
+        password: encryptedPasswod,
       };
 
       return userRepository.create(body);
@@ -72,26 +73,32 @@ module.exports = {
     }
   },
 
-  async login(Email, Password) {
+  async login(email, password) {
     try {
-      const isUser = await userRepository.findUser({ Email });
+      const isUser = await userRepository.findUser({ email });
       if (!isUser) {
         const err = new Error("Email had not register");
         throw err;
       }
 
-      const { Password: encryptedPasswod } = isUser;
+      const { password: encryptedPassword } = isUser;
 
-      isAuthenticated = await comparePassword(Password, encryptedPasswod);
+      const isAuthenticated = await comparePassword(
+        password,
+        encryptedPassword
+      );
+      console.log("nilainya adalah ", isAuthenticated);
 
       if (!isAuthenticated) {
         const err = new Error("Password worng");
         throw err;
       }
 
+      console.log(isUser);
+
       const token = createWebToken({
         id: isUser.id,
-        Email: isUser.Email,
+        email: isUser.email,
       });
 
       const data = {
