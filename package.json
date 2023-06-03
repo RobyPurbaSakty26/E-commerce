@@ -11,7 +11,6 @@
     "make": "sequelize db:create",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all"
-    
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,7 +18,8 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.2.4",
     "pg": "^8.10.0",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.31.1",
+    "sequelize-cli": "^6.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
