@@ -145,7 +145,20 @@ module.exports = {
         }
       }
 
-      return userRepository.update(id, body);
+      const userId = await userRepository.findByPk(id);
+
+      newBody = {
+        name: body.name || userId.name,
+        email: body.email || userId.email,
+        username: body.username || userId.username,
+        address: body.address || userId.address,
+        password: body.password || userId.password,
+        sex: body.sex || userId.sex,
+        foto: body.foto || userId.foto,
+        noPhone: body.noPhone || userId.noPhone,
+      };
+
+      return userRepository.update(id, newBody);
     } catch (err) {
       throw err;
     }
