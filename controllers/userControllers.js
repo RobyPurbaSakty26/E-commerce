@@ -33,4 +33,59 @@ module.exports = {
       });
     }
   },
+
+  async handlerGetUserByPk(req, res) {
+    try {
+      const id = req.params.id;
+      if (!id) {
+        const err = new Error("Id null");
+        throw err;
+      }
+
+      const isData = await userService.getByPk(id);
+
+      if (!isData) {
+        res.status(404).json({
+          status: "Fail",
+          message: "Not found",
+        });
+        return;
+      }
+
+      res.status(200).json({
+        status: "Success",
+        data: isData,
+      });
+    } catch (err) {
+      res.status(401).json({
+        status: "FAIL",
+        message: err.message,
+      });
+    }
+  },
+
+  async handlerDeleteUser(req, res) {
+    try {
+      const id = req.params.id;
+
+      if (!id) {
+        const err = new Error("Id null");
+        throw err;
+      }
+
+      const isData = await userService.delete(id);
+      if (!isData) {
+        res.status(404).json({
+          status: "Fail",
+          message: "Not found",
+        });
+        return;
+      }
+
+      res.status(202).json({
+        status: "Success",
+        message: "Delete Data success",
+      });
+    } catch (err) {}
+  },
 };

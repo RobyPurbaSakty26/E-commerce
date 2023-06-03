@@ -73,7 +73,7 @@ module.exports = {
       req.user = user;
       next();
     } catch (err) {
-      res.status(401).json({
+      res.status(203).json({
         status: "FAIL",
         message: err.message,
       });

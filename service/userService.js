@@ -169,6 +169,6 @@ module.exports = {
   },
 
   getByPk(id) {
-    return userRepository.getByPk(id);
+    return userRepository.findByPk(id);
   },
 };

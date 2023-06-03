@@ -30,6 +30,8 @@ app.get(
   contollers.authUser.whoIm
 );
 app.put("/users/:id", contollers.user.handlerUpdateUser);
+app.get("/users/:id", contollers.user.handlerGetUserByPk);
+app.delete("/users/:id", contollers.user.handlerDeleteUser);
 
 app.use((req, res, next) => {
   res.status(404).json({ error: "Router Not Found" });
