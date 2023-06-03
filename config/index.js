@@ -24,6 +24,11 @@ app.get("/products/:id", contollers.produk.handleGetByIdProduk);
 app.post("/registers", contollers.authUser.handlerCreateUser);
 app.post("/login", contollers.authUser.handleLogin);
 app.get("/users", contollers.authUser.handleGetAllUsers);
+app.get(
+  "/whoim",
+  contollers.authUser.handleAuthorize,
+  contollers.authUser.whoIm
+);
 
 app.use((req, res, next) => {
   res.status(404).json({ error: "Router Not Found" });

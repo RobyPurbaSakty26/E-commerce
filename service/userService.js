@@ -17,10 +17,9 @@ async function encryptPassword(str) {
 async function comparePassword(password, encryptedPassword) {
   try {
     const isValid = await bcrypt.compare(password, encryptedPassword);
-    console.log(password.encryptedPassword);
     return isValid;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 }
 
@@ -87,14 +86,10 @@ module.exports = {
         password,
         encryptedPassword
       );
-      console.log("nilainya adalah ", isAuthenticated);
-
       if (!isAuthenticated) {
         const err = new Error("Password worng");
         throw err;
       }
-
-      console.log(isUser);
 
       const token = createWebToken({
         id: isUser.id,

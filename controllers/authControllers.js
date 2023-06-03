@@ -53,4 +53,45 @@ module.exports = {
       });
     }
   },
+
+  async handleAuthorize(req, res, next) {
+    try {
+      const barerToken = req.headers.authorization;
+
+      if (!barerToken) {
+        const err = new Error("Barer worng barer token");
+        throw err;
+      }
+      const token = barerToken.split("Barer ")[1];
+      const user = await userService.authorize(token);
+
+      if (!user) {
+        const err = new Error("Unatuorize");
+        throw err;
+      }
+
+      req.user = user;
+      next();
+    } catch (err) {
+      res.status(401).json({
+        status: "FAIL",
+        message: err.message,
+      });
+    }
+  },
+
+  async whoIm(req, res) {
+    try {
+      const user = req.user;
+      res.status(200).json({
+        status: "Success",
+        data: user,
+      });
+    } catch (err) {
+      res.status(400).json({
+        status: "Fail",
+        message: err.message,
+      });
+    }
+  },
 };
