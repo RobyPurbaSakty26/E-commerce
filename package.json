@@ -10,8 +10,8 @@
     "drop": "sequelize db:drop",
     "make": "sequelize db:create",
     "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed:all",
-    "build": "yarn run drop && yarn run make &&  yarn run migrate"
+    "seed": "sequelize db:seed:all"
+    
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
