@@ -15,10 +15,11 @@ module.exports = {
      */
     await queryInterface.bulkInsert("produks", [
       {
-        nama_produk: "Makanan Kucing",
-        variant: "Magenta",
-        deskripsi: "Makanan hanya untuk kucing",
-        harga: 2000000,
+        name: "Kopi Arabica",
+        variant: "Arabica",
+        description: "Kopi terbaik sepanjang sejarag",
+        price: "100000",
+        stok: 10,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

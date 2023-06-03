@@ -23,7 +23,7 @@ module.exports = {
       await userService.update(params, body);
 
       res.status(201).json({
-        status: "OK",
+        status: "Ok",
         message: "UPDATE DATA BERHASIL",
       });
     } catch (err) {
@@ -47,13 +47,13 @@ module.exports = {
       if (!isData) {
         res.status(404).json({
           status: "Fail",
-          message: "Not found",
+          message: "ID Not found",
         });
         return;
       }
 
       res.status(200).json({
-        status: "Success",
+        status: "Ok",
         data: isData,
       });
     } catch (err) {
@@ -77,15 +77,20 @@ module.exports = {
       if (!isData) {
         res.status(404).json({
           status: "Fail",
-          message: "Not found",
+          message: "ID Not found",
         });
         return;
       }
 
       res.status(202).json({
-        status: "Success",
+        status: "Ok",
         message: "Delete Data success",
       });
-    } catch (err) {}
+    } catch (err) {
+      res.status(401).json({
+        status: "FAIL",
+        message: err.message,
+      });
+    }
   },
 };

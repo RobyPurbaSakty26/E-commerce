@@ -12,7 +12,7 @@ module.exports = {
     try {
       const { data, count } = await produkService.getAll();
       res.status(200).json({
-        status: "Success",
+        status: "OK",
         data,
         count,
       });
@@ -48,7 +48,7 @@ module.exports = {
       const isdelete = await produkService.delete(id);
       if (!isdelete) {
         res.status(404).json({
-          status: "Ok",
+          status: "OK",
           message: "Delete data Fail",
         });
       }
@@ -76,7 +76,7 @@ module.exports = {
       const body = req.body;
       const produk = await produkService.update(id, body);
       res.status(200).json({
-        status: "Ok",
+        status: "OK",
         data: produk,
       });
     } catch (err) {
@@ -104,7 +104,7 @@ module.exports = {
         });
       }
       res.status(200).json({
-        status: "Ok",
+        status: "OK",
         data: produk,
       });
     } catch (err) {

@@ -2,8 +2,12 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const contollers = require("../controllers");
+const multer = require("multer");
+const upload = multer();
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(upload.none());
 
 // root
 app.get("/", (req, res) => {
