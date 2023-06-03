@@ -156,6 +156,7 @@ module.exports = {
         sex: body.sex || userId.sex,
         foto: body.foto || userId.foto,
         noPhone: body.noPhone || userId.noPhone,
+        password: userId.password,
       };
 
       return userRepository.update(id, newBody);
