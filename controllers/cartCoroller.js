@@ -6,10 +6,14 @@ module.exports = {
       const id = req.params.id;
 
       const { data, count } = await cart.findAll(id);
+      let newData = [];
+      for (let i = 0; i < count; i++) {
+        newData.push(data[i].Product);
+      }
 
       res.status(200).json({
         status: "Success",
-        data: data,
+        data: newData,
         count: count,
       });
     } catch (err) {
