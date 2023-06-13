@@ -1,4 +1,3 @@
-const { produk } = require("../models");
 const productRepository = require("../repository/productRepository");
 
 module.exports = {
