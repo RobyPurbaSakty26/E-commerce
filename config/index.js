@@ -41,6 +41,9 @@ app.delete("/users/:id", contollers.user.handlerDeleteUser);
 app.get("/carts/:id", contollers.cart.handlerfindAllCart);
 app.post("/carts", contollers.cart.handleCreateChart);
 
+// transaction
+app.post("/transactions/:id", contollers.transaction.handllerCreateTransaction);
+
 app.use((req, res) => {
   res.status(404).json({ error: "Router Not Found" });
 });

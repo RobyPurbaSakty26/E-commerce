@@ -14,6 +14,10 @@ module.exports = {
   update(id, body) {
     return Product.update(body, { where: { id } });
   },
+
+  updateStok(id, stok) {
+    return Product.update({ stok: stok }, { where: { id } });
+  },
   count() {
     return Product.count();
   },

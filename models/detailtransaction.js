@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       idTransaction: DataTypes.INTEGER,
       idProduct: DataTypes.INTEGER,
+      count: DataTypes.INTEGER,
     },
     {
       sequelize,
