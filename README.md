@@ -45,9 +45,10 @@ npm run migrate
 POST /transaction
 
 - Request:
+  Header: userId
 
 ```json
-Header: userId
+
 {
   "list_id_product": [
     {
